@@ -9,9 +9,11 @@ var currentPath = [];
 var gameState = 0;
 
 var colorPicker;
-var colorPicker;
+var colorPicker2;
 
 var sel;
+
+var eraser
 
 function preload() {
   backgroundImg = loadImage("art.png");
@@ -39,6 +41,7 @@ function setup(){
    sel.option('8')
    sel.option('9')
    sel.option('10')
+
  
   user = new User();
   form = new Form();
@@ -51,6 +54,7 @@ function setup(){
 
   var clearButton = select('#clearButton');
   clearButton.mousePressed(clearDrawing);
+
  
 }
 
@@ -73,24 +77,27 @@ function draw(){
   if(gameState === 1){
     background(colorPicker.color());
     stroke(colorPicker2.color()); 
-   
+  
   }
-  strokeWeight(4);
+
+  strokeWeight(sel.value());
   noFill();
   form.display();
 
-  
+ /*if(gameState === 2){
+    erase()
+  }*/
+
    for (var i = 0; i < drawing.length; i++) {
        var path = drawing[i];
        beginShape();
-       
-       for(var j = 0; j < path.length; j++) {
+   
+  for(var j = 0; j < path.length; j++) {
            vertex(path[j].x, path[j].y);
        }
 
        endShape();
-   }
-
+      }
    
    textSize(12)
    fill(0)
